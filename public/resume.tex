@@ -1,0 +1,114 @@
+\documentclass[4paper,25pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.45in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{red}\titlerule \vspace{-6pt}]
+
+% Custom commands
+\newcommand{\resumeSubItem}[2]{\item \textbf{#1}: #2}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\LARGE Divas KC} \\[5pt]
+    \href{tel:+15512708394}{551-270-8394} \hfill
+    \href{mailto:divaskc6@gmail.com}{divaskc6@gmail.com} \hfill
+    \href{https://www.linkedin.com/in/divaskc/}{linkedin.com/in/divaskc} \hfill
+    \href{https://github.com/dkc01}{github.com/dkc01}
+\end{center}
+
+% ---------------- Education ----------------
+\section{Education}
+\textbf{Ramapo College of New Jersey} \hfill Mahwah, NJ\\
+Bachelor of Science in Computer Science \hfill June 2027\\
+\textbf{Awards}: Global Scholarship Recipient, College Honors Program, HackRamapo 2026 Winner\\
+\textbf{Relevant Coursework}: Machine Learning, Computer Vision, Data Analytics with Python, Data Visualization, Software Design, Data Structures and Algorithms, Operating Systems, Unix Environment, Discrete Structures, Assembly Language
+
+% ---------------- Skills ----------------
+\section{Technical Skills}
+\begin{itemize}\setlength\itemsep{0em}
+    \item \textbf{Languages}: Python, React, C++, SQL
+    \item \textbf{ML / AI}: Scikit-learn, Neural Networks (CNNs, RNNs, LSTMs), Embeddings, RAG, Transformers
+    \item \textbf{Data \& Visualization}: Pandas, NumPy, Matplotlib, Seaborn, Plotly, Excel
+    \item \textbf{Web, Infra \& Tools}: Next.js, React, PostgreSQL, pgvector, Docker, Git, Linux, Jupyter
+\end{itemize}
+
+% ---------------- Experience ----------------
+\section{Work Experience}
+
+\textbf{Office of Institutional Research} \\
+\textit{Data Analyst Intern, Mahwah, NJ \hfill Feb 2024 -- Present}
+\begin{itemize}
+    \item Supported institutional budgeting and performance reporting by evaluating datasets spanning 1,000+ records.
+    \item Increased reporting accuracy by 15\% through systematic data validation, cleaning, and reconciliation.
+    \item Developed Excel-based financial models and statistical summaries used in budget planning for 5+ departments.
+\end{itemize}
+
+\textbf{Ramapo Information Technology Services} \\
+\textit{Student IT Consultant, Mahwah, NJ \hfill Sept 2024 -- Present}
+\begin{itemize}
+    \item Resolved 20--30 technical support tickets per week involving network connectivity, hardware, and user access for 5,000+ students and staff.
+    \item Monitored campus-wide network infrastructure using Cisco Prime, enabling faster identification of performance issues.
+    \item Maintained a high-volume ticketing workflow with an average 1-day resolution time and 95\% customer satisfaction.
+\end{itemize}
+
+% ---------------- Projects ----------------
+\section{Projects}
+\resumeSubHeadingListStart
+
+\item \textbf{Personal Canvas – AI-Powered Academic Dashboard (Next.js, TypeScript, PostgreSQL, pgvector, OpenRouter)}
+\begin{itemize}
+    \item Built a full-stack academic assistant that syncs Canvas LMS data (courses, assignments, grades, announcements) into a local PostgreSQL database via a custom Node.js parser.
+    \item Implemented a Retrieval-Augmented Generation (RAG) pipeline using pgvector for vector storage and NVIDIA's LLaMA-Nemotron embedding model to enable semantic search over personal academic data.
+    \item Developed an AI chat interface with persistent memory, multi-step tool calling, and automatic conversation compaction to maintain context across sessions.
+    \item Delivered streaming AI-generated course insights including assignment prioritization, effort estimation, and grade trend analysis via a Next.js API powered by the Vercel AI SDK.
+\end{itemize}
+
+\item \textbf{AskMyDocs – RAG Document Q\&A (Python, FAISS, SentenceTransformers, pdfplumber)}
+\begin{itemize}
+    \item Designed and implemented a Retrieval-Augmented Generation pipeline to answer questions across 50+ PDF and TXT documents.
+    \item Built document ingestion, normalization, and overlapping chunking workflows to index thousands of text segments.
+    \item Generated semantic embeddings using SentenceTransformers and executed top-k similarity search with FAISS.
+    \item Delivered source-grounded responses with similarity scores, improving answer reliability and reducing hallucinations.
+\end{itemize}
+
+\resumeSubHeadingListEnd
+
+% ---------------- Certifications ----------------
+\section{Certifications}
+Machine Learning (Coursera), Deep Learning (Coursera), CNN (Coursera), Modern React with Redux (Udemy)
+
+\end{document}
