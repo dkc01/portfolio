@@ -106,7 +106,6 @@ export default function Hero() {
           <div className="flex gap-3 flex-wrap">
             {SOCIAL_BUTTONS.map(({ label, href, icon }) => (
               <a key={label} href={href}
-                download={label === "Resume" ? "resume.pdf" : undefined}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="flex flex-col items-center gap-1.5 px-5 py-3 rounded-xl transition-all"
