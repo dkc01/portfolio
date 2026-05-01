@@ -304,5 +304,5 @@ export const FOOTER_LINKS = [
   { label: "GitHub",   href: "https://github.com/dkc01" },
   { label: "LinkedIn", href: "https://linkedin.com/in/divaskc" },
   { label: "Contact",  href: "#contact" },
-  { label: "Resume",   href: "/resume.tex" },
+  { label: "Resume",   href: "/resume.pdf" },
 ];
