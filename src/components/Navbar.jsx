@@ -1,14 +1,48 @@
 import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { NAV_LINKS, SITE } from "../data/siteData";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNav = (e, href) => {
     if (!href.startsWith("#")) return;
     e.preventDefault();
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    
+    // If not on home page, navigate to home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Use setTimeout to allow navigation to complete before scrolling
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // Already on home, just scroll
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const renderNavLink = ({ label, href }) => {
+    if (href.startsWith("/")) {
+      // Use React Router Link for page routes
+      return (
+        <Link key={label} to={href}
+          className="nav-link text-xs font-semibold tracking-widest uppercase"
+          onClick={() => setMenuOpen(false)}>
+          {label}
+        </Link>
+      );
+    }
+    // Use anchor for section links
+    return (
+      <a key={label} href={href} onClick={(e) => handleNav(e, href)}
+        className="nav-link text-xs font-semibold tracking-widest uppercase">
+        {label}
+      </a>
+    );
   };
 
   return (
@@ -20,20 +54,15 @@ export default function Navbar() {
           backdropFilter: "blur(12px)",
         }}>
         {/* Logo — code style */}
-        <a href="#hero" onClick={(e) => handleNav(e, "#hero")}
+        <Link to="/" onClick={() => setMenuOpen(false)}
           className="font-bold text-sm"
           style={{ color: "#e03535", fontFamily: "monospace", letterSpacing: "0.04em" }}>
           &lt;DK /&gt;
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-5">
-          {NAV_LINKS.map(({ label, href }) => (
-            <a key={label} href={href} onClick={(e) => handleNav(e, href)}
-              className="nav-link text-xs font-semibold tracking-widest uppercase">
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => renderNavLink(link))}
         </div>
 
         {/* Mobile hamburger */}
@@ -52,13 +81,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden mt-4 rounded-2xl p-6 flex flex-col gap-5"
           style={{ background: "#1c1a1a", border: "1px solid rgba(255,255,255,0.09)" }}>
-          {NAV_LINKS.map(({ label, href }) => (
-            <a key={label} href={href} onClick={(e) => handleNav(e, href)}
-              className="text-sm font-bold tracking-widest uppercase"
-              style={{ color: "rgba(240,236,232,0.7)" }}>
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => renderNavLink(link))}
         </div>
       )}
     </nav>

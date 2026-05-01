@@ -15,7 +15,7 @@ export const NAV_LINKS = [
   { label: "Education",  href: "#education" },
   { label: "Experience", href: "#experience" },
   { label: "Skills",     href: "#skills" },
-  { label: "Blog",       href: "#blog" },
+  { label: "Blog",       href: "/blog" },
   { label: "Contact",    href: "#contact" },
 ];
 
@@ -305,4 +305,34 @@ export const FOOTER_LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/divaskc" },
   { label: "Contact",  href: "#contact" },
   { label: "Resume",   href: "/resume.pdf" },
+];
+
+// 90 Days of CS Learning
+export const NINETY_DAYS = [
+  // Week 1-2: Data Structures Fundamentals
+  { day: 1, week: 1, topic: "Arrays & Linked Lists", category: "Data Structures", status: "completed", date: "2026-05-01" },
+  { day: 2, week: 1, topic: "Stacks & Queues", category: "Data Structures", status: "completed", date: "2026-05-02" },
+  { day: 3, week: 1, topic: "Hash Tables", category: "Data Structures", status: "in-progress", date: "2026-05-03" },
+  { day: 4, week: 2, topic: "Trees Basics", category: "Data Structures", status: "not-started", date: "2026-05-04" },
+  { day: 5, week: 2, topic: "Binary Search Trees", category: "Data Structures", status: "not-started", date: "2026-05-05" },
+  { day: 6, week: 2, topic: "Graphs Intro", category: "Data Structures", status: "not-started", date: "2026-05-06" },
+  { day: 7, week: 2, topic: "Graph Traversal (DFS/BFS)", category: "Data Structures", status: "not-started", date: "2026-05-07" },
+  
+  // Week 3-4: Algorithms
+  { day: 8, week: 3, topic: "Sorting Algorithms", category: "Algorithms", status: "not-started", date: "2026-05-08" },
+  { day: 9, week: 3, topic: "Binary Search", category: "Algorithms", status: "not-started", date: "2026-05-09" },
+  { day: 10, week: 3, topic: "Divide & Conquer", category: "Algorithms", status: "not-started", date: "2026-05-10" },
+  { day: 11, week: 4, topic: "Dynamic Programming Intro", category: "Algorithms", status: "not-started", date: "2026-05-11" },
+  { day: 12, week: 4, topic: "DP: Memoization", category: "Algorithms", status: "not-started", date: "2026-05-12" },
+  { day: 13, week: 4, topic: "DP: Tabulation", category: "Algorithms", status: "not-started", date: "2026-05-13" },
+  { day: 14, week: 4, topic: "Greedy Algorithms", category: "Algorithms", status: "not-started", date: "2026-05-14" },
+  
+  // Week 5: Midpoint Review + Leetcode
+  { day: 15, week: 5, topic: "Easy Leetcode Problems", category: "Practice", status: "not-started", date: "2026-05-15" },
+  { day: 16, week: 5, topic: "Medium Leetcode Problems", category: "Practice", status: "not-started", date: "2026-05-16" },
+  { day: 17, week: 5, topic: "Hard Leetcode Problems", category: "Practice", status: "not-started", date: "2026-05-17" },
+  { day: 18, week: 5, topic: "System Design Basics", category: "System Design", status: "not-started", date: "2026-05-18" },
+  { day: 19, week: 5, topic: "Scalability Concepts", category: "System Design", status: "not-started", date: "2026-05-19" },
+  { day: 20, week: 5, topic: "Database Design", category: "System Design", status: "not-started", date: "2026-05-20" },
+  { day: 21, week: 5, topic: "Caching & CDN", category: "System Design", status: "not-started", date: "2026-05-21" },
 ];
