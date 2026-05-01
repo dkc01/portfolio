@@ -46,6 +46,7 @@ export const PROJECTS = [
     ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "OpenRouter"],
     href: null,
+    github: "https://github.com/dkc01/personal-canvas",
   },
   {
     id: "askmydocs",
@@ -61,6 +62,7 @@ export const PROJECTS = [
     ],
     tags: ["Python", "FAISS", "RAG", "pdfplumber"],
     href: null,
+    github: "https://github.com/dkc01/askmydocs",
   },
   {
     id: "mlpipeline",
@@ -76,6 +78,7 @@ export const PROJECTS = [
     ],
     tags: ["SQL", "Tableau", "Excel", "Statistical Analysis"],
     href: null,
+    github: "https://github.com/dkc01/institutional-research-analytics",
   },
   {
     id: "portfolio",
@@ -91,6 +94,7 @@ export const PROJECTS = [
     ],
     tags: ["React", "Vite", "Tailwind CSS", "Claude API"],
     href: "https://github.com/dkc01",
+    github: "https://github.com/dkc01/divas-portfolio",
   },
 ];
 

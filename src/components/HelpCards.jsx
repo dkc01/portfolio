@@ -53,15 +53,26 @@ export default function Projects() {
                   <h3 className="font-bold" style={{ fontSize: "1.25rem", letterSpacing: "-.02em", lineHeight: 1.2 }}>
                     {project.title}
                   </h3>
-                  {project.href && (
-                    <a href={project.href} target="_blank" rel="noopener noreferrer"
-                      className="text-xs font-semibold flex-shrink-0 transition-colors"
-                      style={{ color: "rgba(240,236,232,0.45)", textDecoration: "underline", textUnderlineOffset: "3px" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ece8")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,236,232,0.45)")}>
-                      View
-                    </a>
-                  )}
+                  <div className="flex gap-2 flex-shrink-0">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer"
+                        className="text-xs font-semibold transition-colors"
+                        style={{ color: "rgba(240,236,232,0.45)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ece8")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,236,232,0.45)")}>
+                        GitHub
+                      </a>
+                    )}
+                    {project.href && (
+                      <a href={project.href} target="_blank" rel="noopener noreferrer"
+                        className="text-xs font-semibold transition-colors"
+                        style={{ color: "rgba(240,236,232,0.45)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ece8")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,236,232,0.45)")}>
+                        View
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 {/* Subtitle */}

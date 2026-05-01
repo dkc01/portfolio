@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import { SITE } from "../data/siteData";
 
 const INPUT_STYLE = {
@@ -15,13 +16,46 @@ const INPUT_STYLE = {
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.name && form.email && form.message) setSent(true);
+    if (!form.name || !form.email || !form.message) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          to_email: SITE.email,
+        }
+      );
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError("Failed to send message. Please try again.");
+      console.error("Email error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -113,19 +147,33 @@ export default function Contact() {
 
           {/* RIGHT — Form */}
           {sent ? (
-            <div className="rounded-2xl p-10 flex flex-col items-center justify-center gap-3 text-center"
+            <div className="rounded-2xl p-10 flex flex-col items-center justify-center gap-4 text-center"
               style={{ background: "#141212", border: "1px solid rgba(34,197,94,0.3)" }}>
               <p className="font-bold text-lg" style={{ color: "#22c55e" }}>Message sent! ✓</p>
               <p className="text-sm" style={{ color: "rgba(240,236,232,0.5)" }}>I'll get back to you soon.</p>
+              <button onClick={() => setSent(false)}
+                className="text-xs font-semibold px-4 py-2 rounded-lg transition-colors mt-2"
+                style={{ background: "rgba(255,255,255,0.1)", color: "#f0ece8" }}
+                onMouseEnter={(e) => (e.target.style.background = "rgba(255,255,255,0.15)")}
+                onMouseLeave={(e) => (e.target.style.background = "rgba(255,255,255,0.1)")}>
+                Send Another
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="rounded-2xl p-7 flex flex-col gap-5"
               style={{ background: "#141212", border: "1px solid rgba(255,255,255,0.08)" }}>
 
+              {error && (
+                <div className="p-3 rounded-lg" style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)" }}>
+                  <p className="text-sm" style={{ color: "#ef4444" }}>{error}</p>
+                </div>
+              )}
+
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold" style={{ color: "rgba(240,236,232,0.55)" }}>Name</label>
                 <input name="name" type="text" placeholder="Your name"
                   value={form.name} onChange={handleChange} required style={INPUT_STYLE}
+                  disabled={loading}
                   onFocus={(e) => (e.target.style.borderColor = "rgba(224,53,53,0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")} />
               </div>
@@ -134,6 +182,7 @@ export default function Contact() {
                 <label className="text-xs font-semibold" style={{ color: "rgba(240,236,232,0.55)" }}>Email</label>
                 <input name="email" type="email" placeholder="your@email.com"
                   value={form.email} onChange={handleChange} required style={INPUT_STYLE}
+                  disabled={loading}
                   onFocus={(e) => (e.target.style.borderColor = "rgba(224,53,53,0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")} />
               </div>
@@ -141,21 +190,21 @@ export default function Contact() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold" style={{ color: "rgba(240,236,232,0.55)" }}>Message</label>
                 <textarea name="message" placeholder="Your message..."
-                  value={form.message} onChange={handleChange} required rows={5}
+                  value={form.message} onChange={handleChange} required rows={5} disabled={loading}
                   style={{ ...INPUT_STYLE, resize: "none" }}
                   onFocus={(e) => (e.target.style.borderColor = "rgba(224,53,53,0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")} />
               </div>
 
-              <button type="submit"
+              <button type="submit" disabled={loading}
                 className="w-full py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all"
-                style={{ background: "#e03535", color: "#fff" }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = ".85")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                style={{ background: loading ? "#c02a2a" : "#e03535", color: "#fff", opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+                onMouseEnter={(e) => !loading && (e.currentTarget.style.opacity = ".85")}
+                onMouseLeave={(e) => !loading && (e.currentTarget.style.opacity = "1")}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
                 </svg>
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           )}
